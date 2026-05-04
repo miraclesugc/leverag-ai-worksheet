@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/claude_unlocked_handout_3pg.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/claude_unlocked_handout_3pg.html"
+        }
+    ]
+}

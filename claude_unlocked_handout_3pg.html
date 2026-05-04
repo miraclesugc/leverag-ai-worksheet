@@ -3,197 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Claude Unlocked — Workshop Handout</title>
+<link href="style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  @page { size: letter; margin: 0; }
-  @media print {
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .page { page-break-after: always; }
-    .page:last-child { page-break-after: avoid; }
-    body { margin: 0; padding: 0; background: white; }
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --navy:   #0B0F2A;
-    --purple: #2D1B69;
-    --violet: #7C5CBF;
-    --vl:     #9B7FD4;
-    --lav:    #C4B8E8;
-    --gold:   #D4A843;
-    --bg:     #F4F2FA;
-    --border: #E2DCF5;
-    --text:   #1A1235;
-    --muted:  #6B5E8A;
-  }
-  body {
-    font-family: 'DM Sans', Arial, sans-serif;
-    font-size: 11px;
-    line-height: 1.45;
-    color: var(--text);
-    background: #ddd;
-  }
-
-  /* ── PAGE SHELL ── */
-  .page {
-    width: 8.5in;
-    height: 11in;
-    overflow: hidden;
-    background: white;
-    margin: 0 auto 24px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* ── HEADER ── */
-  .hdr {
-    background: var(--navy);
-    padding: 12px 32px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .logo { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; color: white; }
-  .logo em { color: var(--vl); font-style: normal; }
-  .hdr-right { text-align: right; }
-  .hdr-right .t1 { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 700; color: var(--lav); letter-spacing: .1em; text-transform: uppercase; }
-  .hdr-right .t2 { font-size: 8px; color: var(--vl); margin-top: 2px; }
-
-  /* ── HERO STRIP ── */
-  .hero {
-    background: var(--purple);
-    padding: 7px 32px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .hero strong { font-family: 'Syne', sans-serif; font-size: 10px; color: white; }
-  .hero span { font-size: 8.5px; color: var(--lav); }
-  .hdot { width: 4px; height: 4px; border-radius: 50%; background: var(--vl); flex-shrink: 0; }
-
-  /* ── CONTENT ── */
-  .content {
-    flex: 1;
-    padding: 12px 26px 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    overflow: hidden;
-    align-content: start;
-  }
-  .full { grid-column: 1 / -1; }
-
-  /* ── SECTION BOX ── */
-  .sec { border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
-  .sec-hdr {
-    background: var(--navy);
-    padding: 6px 11px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .sec-num { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; color: var(--gold); letter-spacing: .06em; }
-  .sec-title { font-family: 'Syne', sans-serif; font-size: 9.5px; font-weight: 700; color: white; }
-  .sec-body { padding: 9px 11px; }
-
-  /* ── PROJECT OPTIONS ── */
-  .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 5px; }
-  .opt { display: flex; align-items: center; gap: 5px; padding: 4px 7px; border: 1px solid var(--border); border-radius: 4px; font-size: 9.5px; color: var(--text); }
-  .circle { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--violet); flex-shrink: 0; }
-  .opt-other { display: flex; align-items: center; gap: 5px; padding: 4px 7px; border: 1px dashed var(--violet); border-radius: 4px; font-size: 9.5px; color: var(--muted); }
-  .uline { flex: 1; border-bottom: 1px solid var(--border); height: 13px; }
-
-  /* ── FILES ── */
-  .files-hint { font-size: 8.5px; color: var(--muted); padding: 5px 7px; background: var(--bg); border-radius: 4px; margin-bottom: 6px; line-height: 1.5; }
-  .fline { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
-  .fnum { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; color: var(--violet); width: 13px; }
-  .fbar { flex: 1; border-bottom: 1px solid var(--border); height: 13px; }
-  .tiny-note { font-size: 8.5px; color: var(--muted); font-style: italic; margin-top: 2px; }
-
-  /* ── INSTRUCTIONS ── */
-  .instr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .trow { margin-bottom: 5px; }
-  .tlabel { font-family: 'Syne', sans-serif; font-size: 8.5px; font-weight: 700; color: var(--violet); margin-bottom: 1px; }
-  .tinput { font-size: 9px; color: var(--muted); font-style: italic; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
-  .thint { font-size: 8px; color: #B0A8CC; margin-top: 1px; }
-  .extra-label { font-family: 'Syne', sans-serif; font-size: 8.5px; font-weight: 700; color: var(--violet); margin: 6px 0 3px; }
-  .extra-line { border-bottom: 1px solid var(--border); height: 13px; margin-bottom: 4px; }
-
-  /* ── EXAMPLE CARDS ── */
-  .ex-card { border: 1px solid var(--border); border-radius: 5px; overflow: hidden; margin-bottom: 5px; }
-  .ex-tag { background: var(--purple); padding: 4px 8px; font-family: 'Syne', sans-serif; font-size: 7.5px; font-weight: 700; color: var(--lav); letter-spacing: .05em; text-transform: uppercase; }
-  .ex-body { padding: 6px 9px; font-size: 8.5px; line-height: 1.55; color: var(--text); }
-  .ex-body p { margin-bottom: 2px; }
-  .ex-lbl { font-family: 'Syne', sans-serif; font-size: 7.5px; font-weight: 700; color: var(--violet); text-transform: uppercase; }
-
-  /* ── STEPS ── */
-  .steps-intro { font-size: 8.5px; color: var(--muted); font-style: italic; margin-bottom: 7px; }
-  .step { display: flex; align-items: flex-start; gap: 5px; padding: 5px 6px; border: 1px solid var(--border); border-radius: 4px; background: white; margin-bottom: 4px; }
-  .step.pause { border-color: var(--violet); border-style: dashed; background: #F9F7FF; }
-  .step.timer { background: var(--navy); border-color: var(--navy); }
-  .sbadge { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 700; color: white; background: var(--violet); border-radius: 3px; padding: 2px 5px; flex-shrink: 0; margin-top: 1px; }
-  .sbadge.check { background: var(--gold); color: var(--navy); }
-  .sbadge.clock { background: var(--navy); color: var(--gold); border: 1px solid var(--violet); }
-  .stext { font-size: 9px; color: var(--text); line-height: 1.35; }
-  .step.pause .stext { color: var(--purple); font-weight: 500; }
-  .step.timer .stext { color: white; }
-  .snote { font-size: 8px; color: var(--muted); font-style: italic; margin-top: 1px; }
-  .step.timer .snote { color: var(--lav); }
-  .steps-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .step-col { display: flex; flex-direction: column; }
-
-  /* ── USE STYLE ── */
-  .us-sublabel { font-family: 'Syne', sans-serif; font-size: 8.5px; font-weight: 700; color: var(--violet); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .05em; }
-  .tip-box { background: var(--bg); border-radius: 4px; padding: 6px 8px; margin-top: 6px; }
-  .tip-lbl { font-family: 'Syne', sans-serif; font-size: 8.5px; font-weight: 700; color: var(--violet); margin-bottom: 2px; }
-  .tip-txt { font-size: 8.5px; color: var(--muted); line-height: 1.45; }
-
-  /* ── CONNECTORS ── */
-  .prompt-box { background: var(--bg); border-radius: 4px; padding: 6px 8px; margin-bottom: 6px; }
-  .prow { display: flex; align-items: baseline; gap: 5px; margin-bottom: 3px; }
-  .prow:last-child { margin-bottom: 0; }
-  .pq { font-size: 9px; color: var(--text); }
-  .pn { font-size: 8px; color: var(--muted); font-style: italic; }
-  .other-box { background: var(--bg); border-radius: 4px; padding: 6px 8px; margin-bottom: 6px; }
-  .orow { display: flex; gap: 4px; margin-bottom: 3px; align-items: baseline; }
-  .orow:last-child { margin-bottom: 0; }
-  .olbl { font-size: 9px; color: var(--purple); font-weight: 500; white-space: nowrap; }
-  .oval { font-size: 8.5px; color: var(--muted); }
-  .callout-box { background: var(--navy); border-radius: 4px; padding: 7px 9px; }
-  .callout-title { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; color: var(--gold); margin-bottom: 2px; }
-  .callout-txt { font-size: 8.5px; color: var(--lav); line-height: 1.4; }
-
-  /* ── FOOTER ── */
-  .ftr {
-    background: var(--navy);
-    padding: 8px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .ftr-left .fl1 { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; color: white; }
-  .ftr-left .fl1 em { color: var(--vl); font-style: normal; }
-  .ftr-left .fl2 { font-size: 8px; color: var(--lav); margin-top: 1px; }
-  .ftr-right { display: flex; align-items: center; gap: 10px; }
-  .ftr-cta .fc1 { font-family: 'Syne', sans-serif; font-size: 8.5px; font-weight: 700; color: var(--gold); text-align: right; }
-  .ftr-cta .fc2 { font-size: 7.5px; color: var(--lav); text-align: right; margin-top: 1px; }
-  .qr { width: 42px; height: 42px; border: 1.5px dashed var(--violet); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 7px; color: var(--violet); text-align: center; line-height: 1.4; }
-
-  /* ── PAGE 2/3 MINI HEADER ── */
-  .mini-hdr {
-    background: var(--navy);
-    padding: 8px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .mini-logo { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; color: white; }
-  .mini-logo em { color: var(--vl); font-style: normal; }
-  .mini-right { font-size: 8px; color: var(--lav); text-align: right; }
-</style>
 </head>
 <body>
 
@@ -248,8 +59,32 @@
     </div>
 
     <!-- SEC 3 — full width -->
+    
+<div class="sec full">
+      <div class="sec-hdr"><div class="sec-num">03</div><div class="sec-title">Step-by-Step: Building Your Claude Project</div></div>
+      <div class="sec-body">
+        <p class="steps-intro">Open claude.ai and sign in before starting. Follow along with Miracle on screen.</p>
+        <div class="steps-2col">
+          <div class="step-col">
+            <div class="step"><div class="sbadge">01</div><div><div class="stext">Click <strong>"Projects"</strong> in the top left sidebar</div></div></div>
+            <div class="step"><div class="sbadge">02</div><div><div class="stext">Click <strong>"+ New Project"</strong> in the top right corner</div></div></div>
+            <div class="step"><div class="sbadge">03</div><div><div class="stext">Name it based on the area of work you chose in Section 1</div></div></div>
+            <div class="step"><div class="sbadge">04</div><div><div class="stext">Add a short description of what this project is for</div><div class="snote">For your reference only — does not affect Claude's output</div></div></div>
+            <div class="step"><div class="sbadge">05</div><div><div class="stext">Click <strong>"Create Project"</strong></div></div></div>
+          </div>
+          <div class="step-col">
+             <div class="step pause"><div class="sbadge check">✓</div><div><div class="stext">You should now see your new project screen</div><div class="snote">Raise your hand if you're not there yet</div></div></div>
+            <div class="step"><div class="sbadge">06</div><div><div class="stext">Click <strong>"+"</strong> next to <strong>Instructions</strong> on the right side menu</div></div></div>
+            <div class="step"><div class="sbadge">07</div><div><div class="stext">Use the Section 3 template to type in your instructions</div><div class="snote">Be specific — this is your project's job description</div></div></div>
+            <div class="step"><div class="sbadge">08</div><div><div class="stext">Click <strong>"Save Instructions"</strong></div></div></div>
+            <div class="step"><div class="sbadge">09</div><div><div class="stext">Click <strong>"+"</strong> next to <strong>Files</strong> to upload if you have any ready</div><div class="snote">Optional — skip if you don't have files today</div></div></div>
+      
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="sec full">
-      <div class="sec-hdr"><div class="sec-num">03</div><div class="sec-title">Custom Instructions — Type These Into Claude During Step 8</div></div>
+      <div class="sec-hdr"><div class="sec-num">04</div><div class="sec-title">Custom Instructions — Type These Into Claude During Step 7</div></div>
       <div class="sec-body">
         <p style="font-size:8.5px;color:var(--muted);font-style:italic;margin-bottom:9px;">Use this as a reference while typing your instructions directly into Claude. Be specific — the more specific, the better your results.</p>
         <div class="instr-grid">
@@ -310,16 +145,15 @@
         </div>
       </div>
     </div>
-
   </div><!-- /content -->
 
   <div class="ftr">
     <div class="ftr-left">
       <div class="fl1">Leverage<em>AI</em></div>
-      <div class="fl2">leverageaihq.co &nbsp;·&nbsp; AI Workflow Audit — $197 · Only 5 spots &nbsp;·&nbsp; Page 1 of 3</div>
+      <div class="fl2">leverageaihq.co &nbsp;·&nbsp; Page 1 of 2</div>
     </div>
     <div class="ftr-right">
-      <div class="ftr-cta"><div class="fc1">Scan to get your 10 prompt templates</div><div class="fc2">+ Book your AI Workflow Audit</div></div>
+      <div class="ftr-cta"><div class="fc1">Scan to get your 10 prompt templates</div><div class="fc2">+ Book your AI Strategy Audit</div></div>
       <div class="qr">QR<br>CODE<br>HERE</div>
     </div>
   </div>
@@ -341,29 +175,7 @@
   <div class="content">
 
     <!-- SEC 4 — full width -->
-    <div class="sec full">
-      <div class="sec-hdr"><div class="sec-num">04</div><div class="sec-title">Step-by-Step: Building Your Claude Project</div></div>
-      <div class="sec-body">
-        <p class="steps-intro">Open claude.ai and sign in before starting. Follow along with Miracle on screen.</p>
-        <div class="steps-2col">
-          <div class="step-col">
-            <div class="step"><div class="sbadge">01</div><div><div class="stext">Click <strong>"Projects"</strong> in the top left sidebar</div></div></div>
-            <div class="step"><div class="sbadge">02</div><div><div class="stext">Click <strong>"+ New Project"</strong> in the top right corner</div></div></div>
-            <div class="step"><div class="sbadge">03</div><div><div class="stext">Name it based on the area of work you chose in Section 1</div></div></div>
-            <div class="step"><div class="sbadge">04</div><div><div class="stext">Add a short description of what this project is for</div><div class="snote">For your reference only — does not affect Claude's output</div></div></div>
-            <div class="step"><div class="sbadge">05</div><div><div class="stext">Click <strong>"Create Project"</strong></div></div></div>
-            <div class="step pause"><div class="sbadge check">✓</div><div><div class="stext">You should now see your new project screen</div><div class="snote">Raise your hand if you're not there yet</div></div></div>
-          </div>
-          <div class="step-col">
-            <div class="step"><div class="sbadge">06</div><div><div class="stext">Click <strong>"+"</strong> next to <strong>Instructions</strong> on the right side menu</div></div></div>
-            <div class="step"><div class="sbadge">07</div><div><div class="stext">Use the Section 3 template to type in your instructions</div><div class="snote">Be specific — this is your project's job description</div></div></div>
-            <div class="step"><div class="sbadge">08</div><div><div class="stext">Click <strong>"Save Instructions"</strong></div></div></div>
-            <div class="step"><div class="sbadge">09</div><div><div class="stext">Click <strong>"+"</strong> next to <strong>Files</strong> to upload if you have any ready</div><div class="snote">Optional — skip if you don't have files today</div></div></div>
-            <div class="step timer"><div class="sbadge clock">⏱</div><div><div class="stext">5 minutes — Build your project</div><div class="snote">Focus on instructions first. Files can be added later.</div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     <!-- SEC 5 — full width -->
     <div class="sec full">
@@ -398,34 +210,6 @@
       </div>
     </div>
 
-  </div><!-- /content -->
-
-  <div class="ftr">
-    <div class="ftr-left">
-      <div class="fl1">Leverage<em>AI</em></div>
-      <div class="fl2">leverageaihq.co &nbsp;·&nbsp; Page 2 of 3</div>
-    </div>
-    <div class="ftr-right">
-      <div class="ftr-cta"><div class="fc1">Scan to get your 10 prompt templates</div><div class="fc2">+ Book your AI Workflow Audit</div></div>
-      <div class="qr">QR<br>CODE<br>HERE</div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════ PAGE 3 ══════════════════════════ -->
-<div class="page">
-  <div class="mini-hdr">
-    <div class="mini-logo">Leverage<em>AI</em></div>
-    <div class="mini-right">Claude Unlocked Workshop &nbsp;·&nbsp; May 4, 2026 &nbsp;·&nbsp; leverageaihq.co</div>
-  </div>
-  <div class="hero">
-    <strong>Connectors — Plug Claude Into Your Tools</strong>
-    <div class="hdot"></div>
-    <span>Connect at least one before you leave. You can explore the rest at home.</span>
-  </div>
-
-  <div class="content" style="grid-template-columns:1fr 1fr;align-content:start;">
 
     <!-- SEC 6 — full width -->
     <div class="sec full">
@@ -465,19 +249,62 @@
       </div>
     </div>
 
-  </div><!-- /content -->
+<!-- OFFERINGS -->
+<div class="sec full">
+  <div class="sec-hdr">
+    <div class="sec-num">07</div>
+    <div class="sec-title">Work With Leverage AI — leverageaihq.co</div>
+  </div>
+  <div class="sec-body">
+    <p style="font-size:8px;color:var(--muted);font-style:italic;margin-bottom:8px;">Starting wherever you are — diagnosis, training, or full build-out.</p>
+    <div class="offer-grid">
+
+      <div class="offer-card">
+        <div class="offer-num">01</div>
+        <div class="offer-body">
+          <div class="offer-tag">The Blueprint</div>
+          <div class="offer-title">AI Strategy Audit</div>
+          <div class="offer-desc">I dive into your current business operations to find the hidden hours you're losing to manual work. You get a custom roadmap showing exactly which AI tools will give you the biggest win right now.</div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-num">02</div>
+        <div class="offer-body">
+          <div class="offer-tag">The Implementation</div>
+          <div class="offer-title">Custom AI Workspace</div>
+          <div class="offer-desc">I'll build your company's AI Brain using custom Claude Projects or GPTs, pre-loaded with your brand voice, SOPs, and data so it actually knows your business.</div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-num">03</div>
+        <div class="offer-body">
+          <div class="offer-tag">The Mastery</div>
+          <div class="offer-title">Team Training Workshop</div>
+          <div class="offer-desc">I come to your team virtually or in-person for a hands-on workshop. Your staff learns how to stop chatting and start prompting like pros — saving hours every single day.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </div>
+ 
+  <!-- /content -->
 
   <div class="ftr">
     <div class="ftr-left">
       <div class="fl1">Leverage<em>AI</em></div>
-      <div class="fl2">leverageaihq.co &nbsp;·&nbsp; AI Workflow Audit — $150 &nbsp;·&nbsp; Page 3 of 3</div>
+      <div class="fl2">leverageaihq.co &nbsp;·&nbsp; Page 2 of 2</div>
     </div>
     <div class="ftr-right">
-      <div class="ftr-cta"><div class="fc1">Scan to get your 10 prompt templates</div><div class="fc2">+ Book your AI Workflow Audit</div></div>
+      <div class="ftr-cta"><div class="fc1">Scan to get your 10 prompt templates</div><div class="fc2">+ Book your AI Strategy Audit</div></div>
       <div class="qr">QR<br>CODE<br>HERE</div>
     </div>
   </div>
 </div>
+
 
 </body>
 </html>
